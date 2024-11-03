@@ -4,7 +4,7 @@ require 'db_connection.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    $password = $_POST['passw'];
+    $password = $_POST['passwo'];
 
     // Use the correct column name from your database: "Password"
     $sql = "SELECT UserID, Password FROM Users WHERE Username = ?";
