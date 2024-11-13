@@ -43,6 +43,15 @@
                 echo "<p class='price'>Price: $" . number_format($row['Price'], 2) . "</p>";
                 echo "<p class='stock'>Stock: " . htmlspecialchars($row['Stock']) . "</p>";
                 echo "<p>" . htmlspecialchars($row['Description']) . "</p>";
+
+                // Add order form for each product
+                echo "<form action='place_order.php' method='POST'>";
+                echo "<input type='hidden' name='ProductID' value='" . htmlspecialchars($row['ProductID']) . "'>";
+                echo "<label for='quantity'>Quantity:</label>";
+                echo "<input type='number' name='Quantity' min='1' max='" . htmlspecialchars($row['Stock']) . "' required>";
+                echo "<button type='submit'>Order</button>";
+                echo "</form>";
+
                 echo "</div>";
             }
         } else {
