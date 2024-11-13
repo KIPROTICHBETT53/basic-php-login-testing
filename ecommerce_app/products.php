@@ -1,20 +1,28 @@
 <?php
-// Start the session to check if the user is logged in
 session_start();
 
-// Check if the user is logged in; if not, redirect to the login page
+error_reporting(E_ALL); // Enable all error reporting
+ini_set('display_errors', 1); // Display errors on the page
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
-// Include the database connection
 require 'db_connection.php';
 
-// Retrieve products from the database
+// Check if connection is successful
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Attempt to retrieve products
 $sql = "SELECT ProductID, ProductName, Price, Stock, Description FROM products";
 $result = $conn->query($sql);
 
+if (!$result) {
+    die("Error in SQL query: " . $conn->error);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,22 +31,7 @@ $result = $conn->query($sql);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products</title>
     <style>
-        table {
-            width: 80%;
-            margin: auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        h2 {
-            text-align: center;
-        }
+        /* Table styling */
     </style>
 </head>
 <body>
@@ -52,9 +45,7 @@ $result = $conn->query($sql);
             <th>Description</th>
         </tr>
         <?php
-        // Check if there are products to display
         if ($result->num_rows > 0) {
-            // Output each product row
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>
                         <td>{$row['ProductID']}</td>
