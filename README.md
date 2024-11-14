@@ -21,7 +21,7 @@ Before you begin, ensure you have the following installed:
 1. **Clone the Repository**: Clone or download this project to your local machine.
 
     ```bash
-    git clone https://github.com/KIPROTICHBETT53/ecommerce_app.git
+    git clone https://github.com/KIPROTICHBETT53/basic-php-login-testing.git
     ```
 
 2. **Start XAMPP**: Open XAMPP and start the **Apache** and **MySQL** modules.
