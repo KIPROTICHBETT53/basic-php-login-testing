@@ -39,26 +39,30 @@ if (!$result) {
 <main>
     <h2>Featured Products</h2>
     <p>Explore our exclusive products and great deals!</p>
+
     <?php
-    // Example of fetching products from the database (adjust based on your database structure)
     require 'db_connection.php';
-    $sql = "SELECT ProductID, ProductName, Price, Description FROM products";
+    $sql = "SELECT ProductID, ProductName, Price, Stock, Description FROM products";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            echo "<div class='product'>";
-            echo "<h3>" . htmlspecialchars($row['ProductName']) . "</h3>";
-            echo "<p>" . htmlspecialchars($row['Description']) . "</p>";
-            echo "<p>Price: $" . htmlspecialchars($row['Price']) . "</p>";
-            echo "<a href='order.php?product_id=" . $row['ProductID'] . "'>Order</a>"; // Order link
-            echo "</div>";
+        echo '<ul>';
+        while($row = $result->fetch_assoc()) {
+            echo '<li>';
+            echo '<h3>' . htmlspecialchars($row["ProductName"]) . '</h3>';
+            echo '<p>Price: $' . htmlspecialchars($row["Price"]) . '</p>';
+            echo '<p>Stock: ' . htmlspecialchars($row["Stock"]) . '</p>';
+            echo '<p>' . htmlspecialchars($row["Description"]) . '</p>';
+            echo '<a href="orders.php?ProductID=' . htmlspecialchars($row["ProductID"]) . '">Order</a>';
+            echo '</li>';
         }
+        echo '</ul>';
     } else {
-        echo "<p>No products available.</p>";
+        echo '<p>No products available at the moment.</p>';
     }
     ?>
 </main>
+
 
 
     <footer>
