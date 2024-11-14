@@ -1,5 +1,17 @@
 <?php
 session_start(); // Start the session to access session variables
+require 'db_connection.php';
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Fetch products
+$sql = "SELECT ProductID, ProductName, Price, Description FROM products LIMIT 5"; // Adjust LIMIT as needed
+$result = $conn->query($sql);
+
+if (!$result) {
+    die("Error in SQL query: " . $conn->error);
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +39,17 @@ session_start(); // Start the session to access session variables
     <main>
         <h2>Featured Products</h2>
         <p>Explore our exclusive products and great deals!</p>
-        <!-- You can add product listings here -->
+
+        <div class="product-list">
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div class="product-item">
+                    <h3><?php echo htmlspecialchars($row['ProductName']); ?></h3>
+                    <p><?php echo htmlspecialchars($row['Description']); ?></p>
+                    <p>Price: $<?php echo htmlspecialchars($row['Price']); ?></p>
+                    <a href="product_detail.php?id=<?php echo $row['ProductID']; ?>">View Details</a>
+                </div>
+            <?php endwhile; ?>
+        </div>
     </main>
 
     <footer>

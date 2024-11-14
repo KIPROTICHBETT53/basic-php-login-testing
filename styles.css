@@ -152,3 +152,19 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+.message {
+    color: #28a745; /* Green color for success */
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.message a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+.h2 {
+   color:#007bff
+   align:center
+
+}
