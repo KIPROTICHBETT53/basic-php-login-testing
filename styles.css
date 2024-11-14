@@ -90,81 +90,40 @@ form button:hover {
     background-color: #4cae4c;
 }
 
-/* Product Display */
-.product {
-    border: 1px solid #ddd;
+/* Styling for the product list */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.product-item {
+    background-color: #f8f8f8;
     padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-}
-
-.product h3 {
-    color: #555;
-}
-
-.product p {
-    margin: 10px 0;
-}
-
-.product .price {
-    color: #28a745;
-    font-weight: bold;
-}
-
-.product .stock {
-    font-size: 0.9em;
-    color: #888;
-}
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.product, .order {
     border: 1px solid #ddd;
-    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+    text-align: center;
+}
+
+.product-item h3 {
+    font-size: 1.2em;
+    color: #333;
     margin-bottom: 10px;
-    border-radius: 5px;
 }
 
-h3 {
-    margin-top: 0;
-}
-
-.price, .stock {
+.product-item p {
     color: #555;
 }
 
-form {
+.product-item a {
+    display: inline-block;
     margin-top: 10px;
-}
-
-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-.message {
-    color: #28a745; /* Green color for success */
-    font-weight: bold;
-    margin-top: 15px;
-}
-
-.message a {
     color: #007bff;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
-.h2 {
-   color:#007bff
-   align:center
-
+.product-item a:hover {
+    text-decoration: underline;
 }
